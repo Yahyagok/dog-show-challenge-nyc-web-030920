@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let nameDog = document.getElementsByClassName('padding center')[0]
     let editDogs = document.getElementsByClassName('padding center')[3]
     fetchDogs()
+    fetchEditDogs
 
    function  fetchDogs(){
     fetch("http://localhost:3000/dogs")
@@ -12,13 +13,46 @@ document.addEventListener('DOMContentLoaded', () => {
    }
    function renderDogs(dogs){
    dogs.forEach(dog => showAllDog(dog))
+  
    }
 
    function showAllDog(dog){
+    tableBody.innerHTML += `<tr><td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button>Edit</button></td></tr>`
+    // dogId = dog.setAttribute('data-id', dog.id)
   
-    tableBody.innerHTML +=  `<tr><td>${dog.name}</td> <td>${dog.breed}</td> <td>${dog.sex}</td> <td><button>Edit</button></td></tr>`
-
+//    const name = 
    }
+
+   let form = document.getElementById('dog-form')
+
+   let name = form.name.value 
+   let breed = form.breed.value
+   let sex = form.sex.value 
+
+   let  editDog = {name, breed, sex }
+
+
+   function fetchEditDogs(){
+
+       fetch(' http://localhost:3000/dogs/:id',{
+       method: "PATCH",
+       header: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(editDog)
+
+    })
+       .then(r => r.json())
+       
+   }
+
+  
+       editDogs.addEventListener('submit', editThem )
+      function editThem(event) {
+           console.log("!!!!")
+       }
+
+
 
   
 
