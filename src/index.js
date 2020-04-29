@@ -43,11 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
        .then(r => r.json())
-       
+    
    }
+
+   let button  tableBody.getElementsByTagName('button')[0]
 
   
        editDogs.addEventListener('submit', editThem )
+       console.log(editDogs)
       function editThem(event) {
            console.log("!!!!")
        }
